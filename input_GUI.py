@@ -316,8 +316,12 @@ def save_to_json(graph, mountain_folds, valley_folds, faces_to_draw, grounds):
     # Collect actuators
     for vertex, actuator_properties in actuators.items():
         v_key = f"v{list(graph.keys()).index(vertex) + 1}"
-        if any(actuator_properties):
-            data["actuators"].append(v_key)
+        if actuator_properties[0]:
+            data["actuators"].append([v_key, 0])
+        if actuator_properties[1]:
+            data["actuators"].append([v_key, 1])
+        if actuator_properties[2]:
+            data["actuators"].append([v_key, 2])
 
     # Collect folds
     for idx, fold in enumerate(mountain_folds, start=1):

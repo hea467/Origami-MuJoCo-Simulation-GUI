@@ -16,7 +16,7 @@ def axis_to_string(ax):
     else:
         return "0 0 1"
 
-def get_mjcf_flex(name, vertices, edges, grounds, joints, rgba="0 0 1 0.9"):
+def get_mjcf_flex(name, vertices, edges, grounds, joints,actuators, rgba="0 0 1 0.9"):
     mj = ET.Element("mujoco", model=name)
     slide_axes = ['x', 'y', 'z']
     extension = ET.SubElement(mj, "extension")
@@ -24,7 +24,7 @@ def get_mjcf_flex(name, vertices, edges, grounds, joints, rgba="0 0 1 0.9"):
     ET.SubElement(mj, "include", file = "scene.xml")
     worldbody = ET.SubElement(mj, "worldbody")
     for i, (x, y, z) in enumerate(vertices):
-        body = ET.SubElement(worldbody, 'body', name=f"v{i+1}", pos=f"{x} {y} {z + 0.005}")
+        body = ET.SubElement(worldbody, 'body', name=f"v{i+1}", pos=f"{(x/10)} {(y/10)} {(z/10 + 0.005)}")
         ET.SubElement(body, 'inertial', pos="0 0 0", mass="0.01", diaginertia="1.66667e-05 1.66667e-05 1.66667e-05")
         if i not in grounds:
             if (f"v{i+1}") in joints.keys():
@@ -47,6 +47,22 @@ def get_mjcf_flex(name, vertices, edges, grounds, joints, rgba="0 0 1 0.9"):
     equality = ET.SubElement(mj, 'equality')
     for body_name in edges.keys():
         ET.SubElement(equality, 'flex', flex=body_name)
+
+    # Actuator section 
+    actuator_section = ET.SubElement(mj, 'actuator')
+    for actuator in actuators: 
+        v, axis = actuator
+        if axis == 0:
+            ax = 'x'
+        if axis == 1:
+            ax = 'y'
+        if axis == 2:
+            ax = 'z'
+        if not joints[v][axis]: 
+            #if the joints required is not there
+            ET.SubElement(body, 'joint', name=f"{v}_j{axis+1}", pos="0 0 0", axis= axis_to_string(ax), type="slide")
+        ET.SubElement(actuator_section, "position", name = f"{v}_act{ax}", joint = f"{v}_j{axis + 1}", kp = "20", dampratio = "1", ctrlrange = "-0.05 0.45")
+
     # Convert the XML tree to a string and print it
     tree = ET.ElementTree(mj)
     ET.indent(tree, space="\t", level=0)
@@ -73,6 +89,8 @@ if __name__ == '__main__':
         coor = data["canvas"][v]
         indx = vertices.index([coor[0], coor[1], 1])
         grounds.append(indx)
+    
+    actuators = data["actuators"]
     # print("Triangle arrangement: ", output_connections)
     # print("sorted vertices: ", vertices)
     # print("grounded vertices: ", grounds)
@@ -81,7 +99,7 @@ if __name__ == '__main__':
     f.close()
     joints = data["joints"]
     name = "demo"
-    xml_str = get_mjcf_flex(name, vertices, edges, grounds, joints)
+    xml_str = get_mjcf_flex(name, vertices, edges, grounds, joints, actuators)
     with open(f"./XML_files/{name}.xml", "w") as f:
         f.write(xml_str)
         print(f"Wrote to XML file {name} successfully")
