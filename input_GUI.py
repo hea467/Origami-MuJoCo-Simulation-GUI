@@ -310,7 +310,7 @@ def save_to_json(graph, mountain_folds, valley_folds, faces_to_draw, grounds):
     # Collect vertices
     for idx, vertex in enumerate(graph.keys(), start=1):
         v_key = f"v{idx}"
-        scaled_vertex = [coord / 100.0 for coord in vertex]
+        scaled_vertex = [coord / 1000.0 for coord in vertex]
         data["canvas"][v_key] = scaled_vertex
     
     # Collect actuators
