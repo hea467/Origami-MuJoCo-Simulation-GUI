@@ -1,0 +1,266 @@
+{
+    "canvas": {
+        "v1": [
+            2.85,
+            0.66
+        ],
+        "v2": [
+            3.36,
+            0.66
+        ],
+        "v3": [
+            3.83,
+            0.66
+        ],
+        "v4": [
+            3.83,
+            2.02
+        ],
+        "v5": [
+            3.36,
+            2.02
+        ],
+        "v6": [
+            2.85,
+            2.02
+        ],
+        "v7": [
+            2.85,
+            2.75
+        ],
+        "v8": [
+            3.36,
+            2.75
+        ],
+        "v9": [
+            3.83,
+            2.75
+        ],
+        "v10": [
+            3.83,
+            3.92
+        ],
+        "v11": [
+            3.36,
+            3.92
+        ],
+        "v12": [
+            2.85,
+            3.92
+        ]
+    },
+    "folds": {
+        "mountain": {
+            "mountain1": {
+                "v2": [
+                    3.36,
+                    0.66
+                ],
+                "v5": [
+                    0.336,
+                    0.202
+                ]
+            },
+            "mountain2": {
+                "v4": [
+                    3.83,
+                    2.02
+                ],
+                "v5": [
+                    0.336,
+                    0.202
+                ]
+            },
+            "mountain3": {
+                "v5": [
+                    3.36,
+                    2.02
+                ],
+                "v6": [
+                    0.285,
+                    0.202
+                ]
+            },
+            "mountain4": {
+                "v5": [
+                    3.36,
+                    2.02
+                ],
+                "v8": [
+                    0.336,
+                    0.275
+                ]
+            },
+            "mountain5": {
+                "v7": [
+                    2.85,
+                    2.75
+                ],
+                "v8": [
+                    0.336,
+                    0.275
+                ]
+            },
+            "mountain6": {
+                "v8": [
+                    3.36,
+                    2.75
+                ],
+                "v9": [
+                    0.383,
+                    0.275
+                ]
+            },
+            "mountain7": {
+                "v8": [
+                    3.36,
+                    2.75
+                ],
+                "v11": [
+                    0.336,
+                    0.392
+                ]
+            }
+        },
+        "valley": {}
+    },
+    "closed_loop": false,
+    "grounded_vertices": [],
+    "joints": {
+        "v1": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "v2": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "v3": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "v4": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "v5": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "v6": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "v7": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "v8": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "v9": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "v10": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "v11": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "v12": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ]
+    },
+    "actuators": [],
+    "bodies": {
+        "body1": [
+            "v2",
+            "v1",
+            "v6",
+            "v5"
+        ],
+        "body2": [
+            "v2",
+            "v3",
+            "v4",
+            "v5"
+        ],
+        "body3": [
+            "v4",
+            "v9",
+            "v8",
+            "v5"
+        ],
+        "body4": [
+            "v5",
+            "v8",
+            "v7",
+            "v6"
+        ],
+        "body5": [
+            "v7",
+            "v12",
+            "v11",
+            "v8"
+        ],
+        "body6": [
+            "v8",
+            "v11",
+            "v10",
+            "v9"
+        ]
+    }
+}
