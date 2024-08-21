@@ -65,6 +65,7 @@ def draw_faces():
         sorted_face =  sort_points_counterclockwise(face)
         pygame.draw.polygon(screen, (color[0], color[1], color[2]) , sorted_face)  # Draw face outlines in light gray
         color[2] += 20
+        color[2] = color[2] % 255
 
 def draw_joint_properties(vertex, properties):
     ''' Draws whether certain joints have been selected. '''
