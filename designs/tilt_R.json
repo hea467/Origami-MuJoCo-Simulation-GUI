@@ -1,0 +1,230 @@
+{
+    "canvas": {
+        "v1": [
+            0.131,
+            0.194
+        ],
+        "v2": [
+            0.248,
+            0.194
+        ],
+        "v3": [
+            0.361,
+            0.194
+        ],
+        "v4": [
+            0.483,
+            0.194
+        ],
+        "v5": [
+            0.611,
+            0.194
+        ],
+        "v6": [
+            0.42,
+            0.194
+        ],
+        "v7": [
+            0.611,
+            0.317
+        ],
+        "v8": [
+            0.483,
+            0.317
+        ],
+        "v9": [
+            0.42,
+            0.317
+        ],
+        "v10": [
+            0.361,
+            0.317
+        ],
+        "v11": [
+            0.248,
+            0.317
+        ],
+        "v12": [
+            0.131,
+            0.317
+        ]
+    },
+    "folds": {
+        "mountain": {
+            "mountain1": {
+                "v2": [
+                    2.48,
+                    1.94
+                ],
+                "v11": [
+                    0.248,
+                    0.317
+                ]
+            },
+            "mountain2": {
+                "v3": [
+                    3.61,
+                    1.94
+                ],
+                "v10": [
+                    0.361,
+                    0.317
+                ]
+            },
+            "mountain3": {
+                "v4": [
+                    4.83,
+                    1.94
+                ],
+                "v8": [
+                    0.483,
+                    0.317
+                ]
+            },
+            "mountain4": {
+                "v6": [
+                    4.2,
+                    1.94
+                ],
+                "v9": [
+                    0.42,
+                    0.317
+                ]
+            }
+        },
+        "valley": {}
+    },
+    "closed_loop": false,
+    "grounded_vertices": [],
+    "joints": {
+        "v1": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+        ],
+        "v2": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "v3": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "v4": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+        ],
+        "v5": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "v6": [
+            true,
+            false,
+            true,
+            false,
+            false,
+            false
+        ],
+        "v7": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "v8": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+        ],
+        "v9": [
+            true,
+            false,
+            true,
+            false,
+            false,
+            false
+        ],
+        "v10": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "v11": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "v12": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            true
+        ]
+    },
+    "actuators": [],
+    "bodies": {
+        "body1": [
+            "v2",
+            "v1",
+            "v12",
+            "v11"
+        ],
+        "body2": [
+            "v2",
+            "v3",
+            "v10",
+            "v11"
+        ],
+        "body3": [
+            "v3",
+            "v6",
+            "v9",
+            "v10"
+        ],
+        "body4": [
+            "v4",
+            "v6",
+            "v9",
+            "v8"
+        ],
+        "body5": [
+            "v4",
+            "v5",
+            "v7",
+            "v8"
+        ]
+    }
+}

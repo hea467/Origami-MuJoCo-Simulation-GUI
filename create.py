@@ -24,7 +24,7 @@ def get_mjcf_flex(name, vertices, edges, grounds, joints,actuators, rgba="0 0 1 
     ET.SubElement(mj, "include", file = "scene.xml")
     worldbody = ET.SubElement(mj, "worldbody")
     for i, (x, y, z) in enumerate(vertices):
-        body = ET.SubElement(worldbody, 'body', name=f"v{i+1}", pos=f"{(x/10)} {(y/10)} {(z/10 + 0.005)}")
+        body = ET.SubElement(worldbody, 'body', name=f"v{i+1}", pos=f"{(x)} {(y)} {(z + 0.005)}")
         ET.SubElement(body, 'inertial', pos="0 0 0", mass="0.01", diaginertia="1.66667e-05 1.66667e-05 1.66667e-05")
         if i not in grounds:
             if (f"v{i+1}") in joints.keys():

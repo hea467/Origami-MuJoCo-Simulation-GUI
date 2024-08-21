@@ -1,0 +1,139 @@
+<mujoco model="demo">
+	<extension>
+		<plugin plugin="mujoco.elasticity.solid" />
+	</extension>
+	<include file="scene.xml" />
+	<worldbody>
+		<body name="v1" pos="0.11100000000000002 0.22999999999999998 0.10500000000000001">
+			<inertial pos="0 0 0" mass="0.01" diaginertia="1.66667e-05 1.66667e-05 1.66667e-05" />
+			<joint name="v1_j1" pos="0 0 0" axis="1 0 0" type="slide" />
+			<joint name="v1_j2" pos="0 0 0" axis="0 1 0" type="slide" />
+			<!-- <joint name="v1_j3" pos="0 0 0" axis="0 0 1" type="slide" /> -->
+		</body>
+		<body name="v2" pos="0.11100000000000002 0.346 0.10500000000000001">
+			<inertial pos="0 0 0" mass="0.01" diaginertia="1.66667e-05 1.66667e-05 1.66667e-05" />
+			<joint name="v2_j1" pos="0 0 0" axis="1 0 0" type="slide" />
+			<joint name="v2_j2" pos="0 0 0" axis="0 1 0" type="slide" />
+			<!-- <joint name="v2_j3" pos="0 0 0" axis="0 0 1" type="slide" /> -->
+		</body>
+		<body name="v3" pos="0.187 0.28700000000000003 0.10500000000000001">
+			<inertial pos="0 0 0" mass="0.01" diaginertia="1.66667e-05 1.66667e-05 1.66667e-05" />
+		</body>
+		<body name="v4" pos="0.251 0.22999999999999998 0.10500000000000001">
+			<inertial pos="0 0 0" mass="0.01" diaginertia="1.66667e-05 1.66667e-05 1.66667e-05" />
+		</body>
+		<body name="v5" pos="0.251 0.346 0.10500000000000001">
+			<inertial pos="0 0 0" mass="0.01" diaginertia="1.66667e-05 1.66667e-05 1.66667e-05" />
+		</body>
+		<body name="v6" pos="0.40099999999999997 0.346 0.10500000000000001">
+			<inertial pos="0 0 0" mass="0.01" diaginertia="1.66667e-05 1.66667e-05 1.66667e-05" />
+		</body>
+		<body name="v7" pos="0.40099999999999997 0.22999999999999998 0.10500000000000001">
+			<inertial pos="0 0 0" mass="0.01" diaginertia="1.66667e-05 1.66667e-05 1.66667e-05" />
+		</body>
+		<body name="v8" pos="0.251 0.28700000000000003 0.10500000000000001">
+			<inertial pos="0 0 0" mass="0.01" diaginertia="1.66667e-05 1.66667e-05 1.66667e-05" />
+		</body>
+		<body name="v9" pos="0.40099999999999997 0.28700000000000003 0.10500000000000001">
+			<inertial pos="0 0 0" mass="0.01" diaginertia="1.66667e-05 1.66667e-05 1.66667e-05" />
+		</body>
+		<body name="v10" pos="0.251 0.097 0.10500000000000001">
+			<inertial pos="0 0 0" mass="0.01" diaginertia="1.66667e-05 1.66667e-05 1.66667e-05" />
+			<joint name="v10_j1" pos="0 0 0" axis="1 0 0" type="slide" />
+			<joint name="v10_j2" pos="0 0 0" axis="0 1 0" type="slide" />
+			<joint name="v10_j3" pos="0 0 0" axis="0 0 1" type="slide" />
+		</body>
+		<body name="v11" pos="0.40099999999999997 0.097 0.10500000000000001">
+			<inertial pos="0 0 0" mass="0.01" diaginertia="1.66667e-05 1.66667e-05 1.66667e-05" />
+			<joint name="v11_j1" pos="0 0 0" axis="1 0 0" type="slide" />
+			<joint name="v11_j2" pos="0 0 0" axis="0 1 0" type="slide" />
+			<joint name="v11_j3" pos="0 0 0" axis="0 0 1" type="slide" />
+		</body>
+		<body name="v12" pos="0.251 0.46699999999999997 0.10500000000000001">
+			<inertial pos="0 0 0" mass="0.01" diaginertia="1.66667e-05 1.66667e-05 1.66667e-05" />
+			<joint name="v12_j1" pos="0 0 0" axis="1 0 0" type="slide" />
+			<joint name="v12_j2" pos="0 0 0" axis="0 1 0" type="slide" />
+			<joint name="v12_j3" pos="0 0 0" axis="0 0 1" type="slide" />
+		</body>
+		<body name="v13" pos="0.40099999999999997 0.46699999999999997 0.10500000000000001">
+			<inertial pos="0 0 0" mass="0.01" diaginertia="1.66667e-05 1.66667e-05 1.66667e-05" />
+			<joint name="v13_j1" pos="0 0 0" axis="1 0 0" type="slide" />
+			<joint name="v13_j2" pos="0 0 0" axis="0 1 0" type="slide" />
+			<joint name="v13_j3" pos="0 0 0" axis="0 0 1" type="slide" />
+		</body>
+		<body name="v14" pos="0.544 0.22999999999999998 0.10500000000000001">
+			<inertial pos="0 0 0" mass="0.01" diaginertia="1.66667e-05 1.66667e-05 1.66667e-05" />
+			<joint name="v14_j1" pos="0 0 0" axis="1 0 0" type="slide" />
+			<joint name="v14_j2" pos="0 0 0" axis="0 1 0" type="slide" />
+			<joint name="v14_j3" pos="0 0 0" axis="0 0 1" type="slide" />
+		</body>
+		<body name="v15" pos="0.544 0.346 0.10500000000000001">
+			<inertial pos="0 0 0" mass="0.01" diaginertia="1.66667e-05 1.66667e-05 1.66667e-05" />
+			<joint name="v15_j1" pos="0 0 0" axis="1 0 0" type="slide" />
+			<joint name="v15_j2" pos="0 0 0" axis="0 1 0" type="slide" />
+			<joint name="v15_j3" pos="0 0 0" axis="0 0 1" type="slide" />
+		</body>
+		<body name="v16" pos="0.475 0.28700000000000003 0.10500000000000001">
+			<inertial pos="0 0 0" mass="0.01" diaginertia="1.66667e-05 1.66667e-05 1.66667e-05" />
+		</body>
+		<body name="v17" pos="0.665 0.22999999999999998 0.10500000000000001">
+			<inertial pos="0 0 0" mass="0.01" diaginertia="1.66667e-05 1.66667e-05 1.66667e-05" />
+		</body>
+		<body name="v18" pos="0.665 0.346 0.10500000000000001">
+			<inertial pos="0 0 0" mass="0.01" diaginertia="1.66667e-05 1.66667e-05 1.66667e-05" />
+		</body>
+		<body name="v19" pos="0.665 0.28700000000000003 0.10500000000000001">
+			<inertial pos="0 0 0" mass="0.01" diaginertia="1.66667e-05 1.66667e-05 1.66667e-05" />
+		</body>
+		<body name="v20" pos="0.544 0.28700000000000003 0.10500000000000001">
+			<inertial pos="0 0 0" mass="0.01" diaginertia="1.66667e-05 1.66667e-05 1.66667e-05" />
+		</body>
+	</worldbody>
+	<deformable>
+		<flex name="body1" dim="2" body="v14 v17 v19 v20" vertex="0 0 0 0 0 0 0 0 0 0 0 0"
+			element="3 0 1 1 2 3" rgba="0 0 1 0.9" />
+		<flex name="body2" dim="2" body="v15 v18 v19 v20" vertex="0 0 0 0 0 0 0 0 0 0 0 0"
+			element="0 3 2 2 1 0" rgba="0 0 1 0.9" />
+		<flex name="body3" dim="2" body="v14 v16 v15 v20" vertex="0 0 0 0 0 0 0 0 0 0 0 0"
+			element="2 1 0 0 3 2" rgba="0 0 1 0.9" />
+		<flex name="body4" dim="2" body="v7 v14 v16" vertex="0 0 0 0 0 0 0 0 0" element="0 1 2"
+			rgba="0 0 1 0.9" />
+		<flex name="body5" dim="2" body="v6 v15 v16" vertex="0 0 0 0 0 0 0 0 0" element="2 1 0"
+			rgba="0 0 1 0.9" />
+		<flex name="body6" dim="2" body="v6 v9 v7 v16" vertex="0 0 0 0 0 0 0 0 0 0 0 0"
+			element="1 2 3 1 3 0" rgba="0 0 1 0.9" />
+		<flex name="body7" dim="2" body="v4 v8 v9 v7" vertex="0 0 0 0 0 0 0 0 0 0 0 0"
+			element="1 0 3 3 2 1" rgba="0 0 1 0.9" />
+		<flex name="body8" dim="2" body="v5 v6 v9 v8" vertex="0 0 0 0 0 0 0 0 0 0 0 0"
+			element="0 3 2 2 1 0" rgba="0 0 1 0.9" />
+		<flex name="body9" dim="2" body="v5 v12 v13 v6" vertex="0 0 0 0 0 0 0 0 0 0 0 0"
+			element="1 0 3 3 2 1" rgba="0 0 1 0.9" />
+		<flex name="body10" dim="2" body="v4 v10 v11 v7" vertex="0 0 0 0 0 0 0 0 0 0 0 0"
+			element="0 1 2 2 3 0" rgba="0 0 1 0.9" />
+		<flex name="body11" dim="2" body="v3 v4 v8 v5" vertex="0 0 0 0 0 0 0 0 0 0 0 0"
+			element="0 1 2 0 2 3" rgba="0 0 1 0.9" />
+		<flex name="body12" dim="2" body="v2 v5 v3" vertex="0 0 0 0 0 0 0 0 0" element="2 1 0"
+			rgba="0 0 1 0.9" />
+		<flex name="body13" dim="2" body="v1 v2 v3" vertex="0 0 0 0 0 0 0 0 0" element="0 2 1"
+			rgba="0 0 1 0.9" />
+		<flex name="body14" dim="2" body="v1 v4 v3" vertex="0 0 0 0 0 0 0 0 0" element="0 1 2"
+			rgba="0 0 1 0.9" />
+	</deformable>
+	<equality>
+		<flex flex="body1" />
+		<flex flex="body2" />
+		<flex flex="body3" />
+		<flex flex="body4" />
+		<flex flex="body5" />
+		<flex flex="body6" />
+		<flex flex="body7" />
+		<flex flex="body8" />
+		<flex flex="body9" />
+		<flex flex="body10" />
+		<flex flex="body11" />
+		<flex flex="body12" />
+		<flex flex="body13" />
+		<flex flex="body14" />
+	</equality>
+	<actuator />
+</mujoco>
