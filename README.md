@@ -1,5 +1,7 @@
 # Origami-MuJoCo-Simulation-GUI
 
+## Pygame Based GUI
+
 A fold is simulated in MuJoCo using the flex library by specifying two separate bodies, each to one side of the fold. This will create flexibility where the fold would be. Then, we must specify mobility on vertices that has mobility when folding. This will allow the bodies to move relative to the fold. Below is a video illustrating how a mountain fold is created: 
 
 
@@ -22,3 +24,17 @@ Render the XML file in MuJoCo and make appropiate edits:
 https://github.com/user-attachments/assets/7288b6b1-930f-469c-a3b1-ffbf043ac83e
 
 
+## React WebApp based GUI 
+
+In this version the interface can be viewed on the browser and is much nicer looking! To run it, you need to install MuJoCo, as well as React. 
+
+Make two terminal/command prompt windows.
+
+In the first window, cd into the backend folder and run:
+
+  python app.py 
+
+In another window:
+
+  cd frontend 
+  npm start
