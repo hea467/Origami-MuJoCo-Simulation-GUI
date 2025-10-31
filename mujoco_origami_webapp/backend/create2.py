@@ -34,8 +34,8 @@ def get_joint_range(joint_type):
 def get_mjcf_flex(name, vertices, edges, grounds, joints, actuators_data, rgba="0 0 1 0.9"):
     mj = ET.Element("mujoco", model=name)
     slide_axes = ['x', 'y', 'z']
-    extension = ET.SubElement(mj, "extension")
-    ET.SubElement(extension, "plugin", plugin="mujoco.elasticity.solid")
+    # extension = ET.SubElement(mj, "extension")
+    # ET.SubElement(extension, "plugin", plugin="mujoco.elasticity.solid")
     ET.SubElement(mj, "include", file = "scene.xml")
     worldbody = ET.SubElement(mj, "worldbody")
     # ET.SubElement(worldbody, 'geom', type = "plane", size = "10 10 0.1", rgba="1 1 1 1")
