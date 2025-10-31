@@ -1,0 +1,45 @@
+<!-- <mujoco model="scene">
+    <statistic center="0.3 0 0.4" extent="1" />
+    <visual>
+        <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0" />
+        <rgba haze="0.15 0.25 0.35 1" />
+        <global azimuth="120" elevation="-20" />
+    </visual>
+    <asset>
+        <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512"
+            height="3072" />
+        <texture type="2d" name="groundplane" builtin="flat" mark="edge" rgb1="0.9 0.9 0.9"
+            rgb2="0.9 0.9 0.9"
+            markrgb="0.8 0.8 0.8" width="300" height="300" />
+        <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5"
+            reflectance="0.2" />
+    </asset>
+    <worldbody>
+        <light pos="0 0 1.5" dir="0 0 -1" directional="true" />
+        <geom name="floor" size="0 0 0.05" type="plane" material="groundplane" />
+    </worldbody>
+</mujoco> -->
+<mujoco model="scene">
+    <statistic center="0.3 0 0.4" extent="1" />
+    <visual>
+        <!-- remove <headlight .../> entirely OR make it “neutral” -->
+        <headlight diffuse="0 0 0" specular="0 0 0" ambient="0 0 0" />
+        <rgba haze="0.15 0.25 0.35 1" />
+        <global azimuth="120" elevation="-20" />
+    </visual>
+
+    <asset>
+        <!-- Checker texture to mimic the “standard” grid -->
+        <texture type="2d" name="gridtex" builtin="checker"
+            rgb1="0.90 0.90 0.90" rgb2="0.75 0.75 0.75"
+            width="1024" height="1024" />
+        <material name="gridmat" texture="gridtex" texuniform="true" texrepeat="8 8"
+            reflectance="0.2" />
+    </asset>
+
+    <worldbody>
+        <light pos="0 0 1.5" dir="0 0 -1" directional="true" />
+        <geom name="floor" type="plane" size="0 0 0.05" material="gridmat" />
+    </worldbody>
+</mujoco>
+  

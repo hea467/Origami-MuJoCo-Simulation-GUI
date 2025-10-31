@@ -10,11 +10,12 @@ pygame.init()
 WIDTH, HEIGHT = 800, 600
 BACKGROUND_COLOR = (255, 255, 255)
 VERTEX_COLOR = (0, 0, 255)
-LINE_COLOR_CHOICES = [(0, 0, 255), (255, 0, 0), (255, 255, 0)]
+LINE_COLOR_CHOICES = [(0, 0, 255), (255, 0, 0)]
 VERTEX_RADIUS = 20
 LINE_WIDTH = 3
 
-JOINT_TYPES = ['X Linear', 'Y Linear', 'Z Linear', 'X Rotational', 'Y Rotational', 'Z Rotational', 'X-pos Actuator', 'Y-pos Actuator', 'Z-pos Actuator', 'Grounded']
+JOINT_TYPES = ['X Linear', 'Y Linear', 'Z Linear (all)', 'Z Linear (up)', 'Z Linear (down)',
+               'X-pos Actuator', 'Y-pos Actuator', 'Z-pos Actuator']
 BAR_WIDTH = 200
 BAR_HEIGHT = 30 * len(JOINT_TYPES)
 BAR_POSITION = (WIDTH - BAR_WIDTH - 10, 10)  # 10 pixels from the top right corner
@@ -45,8 +46,8 @@ def draw_vertices():
                                      vertex[1] + 15 * math.sin(i * math.pi / 3))
                     pygame.draw.circle(screen, (255, 0, 0), indicator_pos, 3)
         if vertex in actuators:
-            for i, is_active in enumerate(actuators[vertex]):
-                if is_active:
+            for i, (is_active, _) in enumerate(actuators[vertex]):
+                if (is_active):
                     indicator_pos = (vertex[0] + 20 * math.cos((i + 6) * math.pi / 3),
                                      vertex[1] + 20 * math.sin((i + 6) * math.pi / 3))
                     pygame.draw.circle(screen, (0, 255, 0), indicator_pos, 3)
@@ -64,8 +65,12 @@ def draw_faces():
     for face in faces_to_draw:
         sorted_face =  sort_points_counterclockwise(face)
         pygame.draw.polygon(screen, (color[0], color[1], color[2]) , sorted_face)  # Draw face outlines in light gray
-        color[2] += 20
-        color[2] = color[2] % 255
+        color[2] += 50
+        color[1] += 10
+        color[0] += 7
+        color[2] %= 255
+        color[1] %= 255
+        color[0] %= 255
 
 def draw_joint_properties(vertex, properties):
     ''' Draws whether certain joints have been selected. '''
@@ -86,6 +91,7 @@ def draw_joint_selection_bar():
         font = pygame.font.Font(None, 24)
         text = font.render(joint_type, True, (0, 0, 0))
         screen.blit(text, (button_rect[0] + 5, button_rect[1] + 5))
+
 
 def find_vertex(pos):
     ''' From the position of a click, determine whether the user is trying to click on a vertex. '''
@@ -243,14 +249,14 @@ def detect_faces(graph, mountain_folds, valley_folds):
     for fold in folds:
         start, end = fold
         paths = find_all_paths(graph, start, end)
-        # print("paths", paths)
+        print("paths", paths)
         for path in paths:
             if len(path) >= 3:  # A face should have at least 3 vertices
                 f = list(sorted(path))  # Sort to avoid duplicates due to different starting points
                 if f not in repition_track:
                     faces.append(path)
                     repition_track.append(f)
-        # print("faces", faces)
+        print("faces", faces)
 
 
 def is_point_in_polygon(x, y, polygon):
@@ -280,18 +286,30 @@ def find_polygon(click_pos, faces):
 def toggle_joint_property(vertex, property_index):
     ''' Keeps track of which joint property is active for the vertex the function is called on. '''
     if vertex not in joints:
-        joints[vertex] = [False] * 6
+        joints[vertex] = [False] * 5  # 3 Z options replace single Z
     if vertex not in actuators:
-        actuators[vertex] = [False] * 3
-    if vertex not in grounds: 
-        grounds[vertex] = False
-    if property_index < 6:
+        actuators[vertex] = [[False, ""] for i in range(3)] 
+    if property_index < 5:  # X, Y, Z Linear options
+        # Ensure only one Z linear option can be active at a time
+        if 'Z Linear' in JOINT_TYPES[property_index]:
+            joints[vertex][2] = False  # Reset 'Z Linear (all)'
+            joints[vertex][3] = False  # Reset 'Z Linear (up)'
+            joints[vertex][4] = False  # Reset 'Z Linear (down)'
         joints[vertex][property_index] = not joints[vertex][property_index]
-    elif property_index >= 6 and property_index < 9:
-        actuator_index = property_index - 6
-        actuators[vertex][actuator_index] = not actuators[vertex][actuator_index]
-    else: 
-        grounds[vertex] = not grounds[vertex]
+    else:  # Actuators
+        actuator_index = property_index - 5
+        if actuator_index == 2:
+            #putting actuator on z 
+            if joints[vertex][2]: 
+                actuators[vertex][2][0] = not actuators[vertex][2][0]
+                actuators[vertex][2][1] = "_all"
+            if joints[vertex][3]: 
+                actuators[vertex][2][0] = not actuators[vertex][2][0]
+                actuators[vertex][2][1] = "_up"
+            if joints[vertex][4]: 
+                actuators[vertex][2][0] = not actuators[vertex][2][0]
+                actuators[vertex][2][1] = "_down"
+
 
 def save_to_json(graph, mountain_folds, valley_folds, faces_to_draw, grounds):
     ''' When the user hits the ENTER key, this function collects all the information 
@@ -301,7 +319,7 @@ def save_to_json(graph, mountain_folds, valley_folds, faces_to_draw, grounds):
             "closed_loop": False, 
             "grounded_vertices": [], 
             "joints": {}, 
-            "actuators": [], 
+            "actuators": {}, 
             "bodies":{} }
     
     for vertex, joint_properties in joints.items():
@@ -311,18 +329,17 @@ def save_to_json(graph, mountain_folds, valley_folds, faces_to_draw, grounds):
     # Collect vertices
     for idx, vertex in enumerate(graph.keys(), start=1):
         v_key = f"v{idx}"
-        scaled_vertex = [coord / 1000.0 for coord in vertex]
+        scaled_vertex = [coord / 100.0 for coord in vertex]
         data["canvas"][v_key] = scaled_vertex
     
     # Collect actuators
     for vertex, actuator_properties in actuators.items():
         v_key = f"v{list(graph.keys()).index(vertex) + 1}"
-        if actuator_properties[0]:
-            data["actuators"].append([v_key, 0])
-        if actuator_properties[1]:
-            data["actuators"].append([v_key, 1])
-        if actuator_properties[2]:
-            data["actuators"].append([v_key, 2])
+
+        for (act, type) in actuator_properties:
+            if act:
+                data["actuators"][v_key] = actuator_properties  # Store list of booleans
+                break
 
     # Collect folds
     for idx, fold in enumerate(mountain_folds, start=1):
@@ -365,9 +382,8 @@ def save_to_json(graph, mountain_folds, valley_folds, faces_to_draw, grounds):
         if ground: 
             data["grounded_vertices"].append(f"v{list(graph.keys()).index(vertex) + 1}")
 
-    with open("./designs/design.json", "w") as json_file:
+    with open("design.json", "w") as json_file:
         json.dump(data, json_file, indent=4)
-        print(f"Design saved to design.json at {json_file}")
 
 def get_clicked_joint_type(click_pos):
     if BAR_POSITION[0] <= click_pos[0] <= BAR_POSITION[0] + BAR_WIDTH:
@@ -392,6 +408,7 @@ while running:
                 print("Edit mode turned on")
             if event.key == pygame.K_RETURN:
                 save_to_json(graph, mountain_folds, valley_folds, faces_to_draw, grounds)
+                print("Design saved to design.json")
         elif event.type == pygame.MOUSEBUTTONDOWN:
             click_pos = event.pos
             if joint_edit_mode:
@@ -399,11 +416,10 @@ while running:
                     property_index = get_clicked_joint_type(click_pos)
                     if property_index is not None:
                         toggle_joint_property(selected_vertex, property_index)
-                        # print("JOINTS: ", joints)
-                        # print("ACTUATORS: ", actuators)
-                        # print("GROUNDS", grounds)
+                        print("JOINTS: ", joints)
+                        print("ACTUATORS: ", actuators)
+                        print("GROUNDS", grounds)
             else:
-
                 clicked_vertex = find_vertex(event.pos)
                 clicked_line = find_line(event.pos, graph)
                 
@@ -420,9 +436,9 @@ while running:
                     else:
                         polygon = find_polygon(click_pos, faces)
                         if polygon:
-                            # print("graph", graph)
-                            # print("faces: ", faces)
-                            # print("clicked in polygon: ", polygon)
+                            print("graph", graph)
+                            print("faces: ", faces)
+                            print("clicked in polygon: ", polygon)
                             faces_to_draw.append(polygon)
                             continue
                             # sorted_face =  sort_points_counterclockwise(polygon)
